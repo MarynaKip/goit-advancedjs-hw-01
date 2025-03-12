@@ -66,18 +66,18 @@ const images = [
       description: 'Lighthouse Coast Sea',
     },
 ];
-  
-let lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-});
 
+let lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
 export function createGallery() {
-    const gallery = document.querySelector('ul.gallery');
-  
-    const markup = images
-      .map(
-        (img) => `
+  const gallery = document.querySelector(".gallery");
+  if (!gallery) return;
+
+  const markup = images
+    .map(
+      (img) => `
     <li class="gallery-item">
         <a class="gallery-link" href="${img.original}">
             <img
@@ -88,12 +88,11 @@ export function createGallery() {
         </a>
     </li>
   `
-      )
-      .join('');
-  
-    gallery.insertAdjacentHTML('afterbegin', markup);
-  
-    gallery.insertAdjacentHTML('afterbegin', markup);
-  
-    lightbox.refresh();
+    )
+    .join("");
+
+  gallery.innerHTML = markup;
+
+
+  lightbox.refresh();
 }
